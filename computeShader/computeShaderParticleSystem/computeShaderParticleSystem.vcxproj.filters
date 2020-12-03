@@ -27,4 +27,15 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="data\shader\fragment.shader">
+      <Filter>Ressourcendateien</Filter>
+    </None>
+    <None Include="data\shader\particlesystem.shader">
+      <Filter>Ressourcendateien</Filter>
+    </None>
+    <None Include="data\shader\vertex.shader">
+      <Filter>Ressourcendateien</Filter>
+    </None>
+  </ItemGroup>
 </Project>

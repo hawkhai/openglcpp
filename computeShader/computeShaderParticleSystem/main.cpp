@@ -1,6 +1,6 @@
 /*
 This code is licensed under the Mozilla Public License Version 2.0 (http://opensource.org/licenses/MPL-2.0)
-© 2014 by Sascha Willems - http://www.saschawillems.de
+?2014 by Sascha Willems - http://www.saschawillems.de
 
 This compute shader implements a very basic attraction based particle system that changes velocities
 to move the particles towards the target position
@@ -123,7 +123,7 @@ int main(void)
 
 	//Create a window and create its OpenGL context
 //	window = glfwCreateWindow(1920, 1200, "OpenGL Compute Shader Particle System", glfwGetPrimaryMonitor(), NULL);
-	window = glfwCreateWindow(1280, 720, "OpenGL Compute Shader Particle System", NULL, NULL);
+	window = glfwCreateWindow(400, 300, "OpenGL Compute Shader Particle System", NULL, NULL);
 
 	//If the window couldn't be created
 	if (!window)
@@ -153,7 +153,7 @@ int main(void)
 
 	// Set debug callback
 	if (glDebugMessageCallback != NULL) {
-		glDebugMessageCallback(glDebugCallback, NULL);
+		glDebugMessageCallback((GLDEBUGPROC)glDebugCallback, NULL);
 	}
 	glEnable(GL_DEBUG_OUTPUT);
 
@@ -191,10 +191,17 @@ int main(void)
 	int frameCounter = 0;
 
 	//Main Loop
+	double lastFPStimeCtrl = 0;
 	do
 	{
-
 		double thisFPStime = glfwGetTime();
+		if (thisFPStime - lastFPStimeCtrl >= 1.0 / 40) {
+			// yes!!
+		} else {
+			int ktime = (1.0 / 40 - (thisFPStime - lastFPStimeCtrl)) * 1000;
+			Sleep(ktime);
+		}
+		lastFPStimeCtrl = glfwGetTime();
 		frameCounter++;
 
 		if (thisFPStime - lastFPStime >= 1.0)
@@ -207,7 +214,7 @@ int main(void)
 			windowTitle += std::to_string(frameCounter);
 			windowTitle += " fps) - (c) 2014 by Sascha Willems (www.saschawillems.de)";
 			const char* windowCaption = windowTitle.c_str();
-			glfwSetWindowTitle(window, windowCaption);
+			//glfwSetWindowTitle(window, windowCaption);
 
 			frameCounter = 0;
 		}

@@ -1,6 +1,6 @@
 /*
 This code is licensed under the Mozilla Public License Version 2.0 (http://opensource.org/licenses/MPL-2.0)
-© 2014 by Sascha Willems - http://www.saschawillems.de
+?2014 by Sascha Willems - http://www.saschawillems.de
 
 This compute shader implements a very basic attraction based particle system that changes velocities
 to move the particles towards the target position
@@ -215,6 +215,9 @@ void glRenderer::resetPositionSSBO()
 	glfwPollEvents();
 	glfwGetCursorPos(window, &cursorX, &cursorY);
 	glfwGetWindowSize(window, &windowWidth, &windowHeight);
+
+	cursorX = 200;
+	cursorY = 150;
 
 	float destPosX = (float)(cursorX / (windowWidth)-0.5f) * 2.0f;
 	float destPosY = (float)((windowHeight - cursorY) / windowHeight - 0.5f) * 2.0f;

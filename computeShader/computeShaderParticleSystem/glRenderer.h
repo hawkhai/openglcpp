@@ -1,6 +1,6 @@
 /*
 This code is licensed under the Mozilla Public License Version 2.0 (http://opensource.org/licenses/MPL-2.0)
-© 2014 by Sascha Willems - http://www.saschawillems.de
+?2014 by Sascha Willems - http://www.saschawillems.de
 
 This compute shader implements a very basic attraction based particle system that changes velocities
 to move the particles towards the target position
@@ -20,7 +20,7 @@ private:
 	GLuint SSBOVel;
 	GLuint particleTex;
 	float frameDelta = 0.0f;
-	float speedMultiplier = 0.15f;
+	float speedMultiplier = 0.15f * 10;
 	bool borderEnabled = true;
 	bool colorFade = false;
 	bool pause = false;
