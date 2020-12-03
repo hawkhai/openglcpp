@@ -27,4 +27,18 @@
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="data\shader\fragment.shader">
+      <Filter>Ressourcendateien</Filter>
+    </None>
+    <None Include="data\shader\geometry_circle.shader">
+      <Filter>Ressourcendateien</Filter>
+    </None>
+    <None Include="data\shader\geometry_passthrough.shader">
+      <Filter>Ressourcendateien</Filter>
+    </None>
+    <None Include="data\shader\vertex.shader">
+      <Filter>Ressourcendateien</Filter>
+    </None>
+  </ItemGroup>
 </Project>

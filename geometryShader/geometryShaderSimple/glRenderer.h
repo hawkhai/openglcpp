@@ -1,6 +1,6 @@
 /*
 This code is licensed under the Mozilla Public License Version 2.0 (http://opensource.org/licenses/MPL-2.0)
-© 2014 by Sascha Willems - http://www.saschawillems.de
+?2014 by Sascha Willems - http://www.saschawillems.de
 */
 
 #pragma once

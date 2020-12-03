@@ -17,6 +17,12 @@
     <ClCompile Include="glRenderer.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="data\shader\fragment.shader" />
+    <None Include="data\shader\geometry_circle.shader" />
+    <None Include="data\shader\geometry_passthrough.shader" />
+    <None Include="data\shader\vertex.shader" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{9E0CBA20-8CD3-4CF0-B25A-4433A884057D}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
@@ -60,13 +66,13 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>E:\C++\libs\glew\include;E:\C++\libs\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../opengl-3rd\glew-2.2.0-win32\glew-2.2.0\include;../../../opengl-3rd\glfw-3.3.2.bin.WIN32\glfw-3.3.2.bin.WIN32\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalUsingDirectories>%(AdditionalUsingDirectories)</AdditionalUsingDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>E:\C++\libs\glfw\lib-msvc120;E:\C++\libs\glew\lib\Release\Win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../../../opengl-3rd\glfw-3.3.2.bin.WIN32\glfw-3.3.2.bin.WIN32\lib-vc2019;../../../opengl-3rd\glew-2.2.0-win32\glew-2.2.0\lib\Release\Win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glu32.lib;glew32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
