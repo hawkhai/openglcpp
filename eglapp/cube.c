@@ -213,8 +213,8 @@ int main(int argc, char **argv) {
     EGL_CHECK(eglMakeCurrent(sEGLDisplay, sEGLSurface, sEGLSurface, sEGLContext));
 
     /* Shader Initialisation */
-    process_shader(&uiVertShader, "shader.vert", GL_VERTEX_SHADER);
-    process_shader(&uiFragShader, "shader.frag", GL_FRAGMENT_SHADER);
+    process_shader(&uiVertShader, "shader\\shader.vert", GL_VERTEX_SHADER);
+    process_shader(&uiFragShader, "shader\\shader.frag", GL_FRAGMENT_SHADER);
 
     /* Create uiProgram (ready to attach shaders) */
     uiProgram = GL_CHECK(glCreateProgram());

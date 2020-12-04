@@ -58,7 +58,11 @@ void process_shader(GLuint *pShader, char *sFilename, GLint iShaderType) {
 	/* Create shader and load into GL. */
 	*pShader = GL_CHECK(glCreateShader(iShaderType));
 	
-	aStrings[0] = load_shader(sFilename);
+#define max_path 4096
+    char resolved_path[max_path] = { 0 };
+    _fullpath(resolved_path, sFilename, max_path);
+
+	aStrings[0] = load_shader(resolved_path);
 	
 	GL_CHECK(glShaderSource(*pShader, 1, aStrings, NULL));
 
