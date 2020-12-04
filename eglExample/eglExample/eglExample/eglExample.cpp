@@ -1,6 +1,6 @@
 /*
 This code is licensed under the Mozilla Public License Version 2.0 (http://opensource.org/licenses/MPL-2.0)
-© 2015 by Sascha Willems - http://www.saschawillems.de
+?2015 by Sascha Willems - http://www.saschawillems.de
 
 Basic EGL example for using OpenGL ES on Windows
 
@@ -296,6 +296,10 @@ int _tmain(int argc, _TCHAR* argv[])
 	eglChooseConfig(eglDisplay, configAttributes, &windowConfig, 1, &nrOfConfigs);
 	EGLSurface eglSurface = eglCreateWindowSurface(eglDisplay, windowConfig, hwnd, surfaceAttributes);
 	if (eglSurface == EGL_NO_SURFACE) {
+		// http://docs.neomades.com/en/current/GenericAPI/reference/javax/microedition/khronos/egl/EGL10.html
+		// public static final int EGL_BAD_CONFIG
+		// EGL error code indicating 'bad config'.
+		// Constant Value : 12293 (0x00003005)
 		cerr << "Could not create EGL surface : " << eglGetError() << endl;
 		return 1;
 	}
