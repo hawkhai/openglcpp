@@ -94,14 +94,14 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>E:\CPP\libs\glew\include;E:\CPP\libs\glfw\include;E:\CPP\libs\assimp-3.2\assimp-3.2\include;E:\CPP\libs\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\opengl-3rd\glew-2.2.0-win32\glew-2.2.0\include;..\..\opengl-3rd\glfw-3.3.2.bin.WIN32\glfw-3.3.2.bin.WIN32\include;..\..\opengl-3rd\assimp-5.0.1\assimp-5.0.1\include;..\..\opengl-3rd\glm-0.9.9.8\glm;..\..\opengl-3rd\assimp-5.0.1\assimp-5.0.1\lib\vs2019_win32;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalUsingDirectories>%(AdditionalUsingDirectories)</AdditionalUsingDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>E:\CPP\libs\glfw\lib-vc2015;E:\CPP\libs\glew\lib\Release\Win32;E:\CPP\libs\assimp-3.2\assimp-3.2\lib\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glu32.lib;glew32.lib;glfw3.lib;assimp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\opengl-3rd\glfw-3.3.2.bin.WIN32\glfw-3.3.2.bin.WIN32\lib-vc2019;..\..\opengl-3rd\glew-2.2.0-win32\glew-2.2.0\lib\Release\Win32;..\..\opengl-3rd\assimp-5.0.1\assimp-5.0.1\lib\vs2019_win32\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glu32.lib;glew32.lib;glfw3.lib;assimp-vc142-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

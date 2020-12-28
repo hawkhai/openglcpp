@@ -25,6 +25,7 @@
 
 using namespace std;
 
+#define M_PI       3.14159265358979323846   // pi
 #define deg_to_rad(deg) deg * float(M_PI / 180)
 #define INSTANCING_RANGE 3
 
