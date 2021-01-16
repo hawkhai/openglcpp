@@ -18,6 +18,8 @@
 #define WIN32_LEAN_AND_MEAN 1
 #include <windows.h>
 
+#include "fakedriver.h"
+
 typedef struct {
 	float x, y, z;
 } vec3;
@@ -25,9 +27,9 @@ typedef struct {
 #define GL_CHECK(x) \
         x; \
         { \
-          GLenum glError = glGetError(); \
+          GLenum glError = glzGetError(); \
           if(glError != GL_NO_ERROR) { \
-            fprintf(stderr, "glGetError() = %i (0x%.8x) at line %i\n", glError, glError, __LINE__); \
+            fprintf(stderr, "glzGetError() = %i (0x%.8x) at line %i\n", glError, glError, __LINE__); \
             exit(1); \
           } \
         }
@@ -35,9 +37,9 @@ typedef struct {
 #define EGL_CHECK(x) \
     x; \
     { \
-        EGLint eglError = eglGetError(); \
+        EGLint eglError = eglzGetError(); \
         if(eglError != EGL_SUCCESS) { \
-            fprintf(stderr, "eglGetError() = %i (0x%.8x) at line %i\n", eglError, eglError, __LINE__); \
+            fprintf(stderr, "eglzGetError() = %i (0x%.8x) at line %i\n", eglError, eglError, __LINE__); \
             exit(1); \
         } \
     }

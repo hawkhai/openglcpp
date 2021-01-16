@@ -1,9 +1,32 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "app", "app.vcxproj", "{22CA7888-6D80-4122-9414-532179E3BF79}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E13378C2-EA74-487D-98E0-6EEDBB1CE85F} = {E13378C2-EA74-487D-98E0-6EEDBB1CE85F}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fakedriver", "..\..\irrlicht\irrlicht-ogles\source\Irrlicht\fakedriver\fakedriver\fakedriver.vcxproj", "{E13378C2-EA74-487D-98E0-6EEDBB1CE85F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7755A607-5808-4ED2-B0DE-4029A549C350} = {7755A607-5808-4ED2-B0DE-4029A549C350}
+		{CE6C65D7-F8C4-4776-AC6B-D2C53BCB1AFC} = {CE6C65D7-F8C4-4776-AC6B-D2C53BCB1AFC}
+		{78E76FF0-5DAB-4889-A783-668ACD65EBAF} = {78E76FF0-5DAB-4889-A783-668ACD65EBAF}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fakedriverAdapterAdreno", "..\..\irrlicht\irrlicht-ogles\source\Irrlicht\fakedriver\fakedriverAdapter\fakedriverAdapterAdreno.vcxproj", "{CE6C65D7-F8C4-4776-AC6B-D2C53BCB1AFC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7755A607-5808-4ED2-B0DE-4029A549C350} = {7755A607-5808-4ED2-B0DE-4029A549C350}
+		{78E76FF0-5DAB-4889-A783-668ACD65EBAF} = {78E76FF0-5DAB-4889-A783-668ACD65EBAF}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fakedriverAdapterMali", "..\..\irrlicht\irrlicht-ogles\source\Irrlicht\fakedriver\fakedriverAdapter\fakedriverAdapterMali.vcxproj", "{7755A607-5808-4ED2-B0DE-4029A549C350}"
+	ProjectSection(ProjectDependencies) = postProject
+		{78E76FF0-5DAB-4889-A783-668ACD65EBAF} = {78E76FF0-5DAB-4889-A783-668ACD65EBAF}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fakedriverAdapterPowerVR", "..\..\irrlicht\irrlicht-ogles\source\Irrlicht\fakedriver\fakedriverAdapter\fakedriverAdapterPowerVR.vcxproj", "{78E76FF0-5DAB-4889-A783-668ACD65EBAF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,8 +44,43 @@ Global
 		{22CA7888-6D80-4122-9414-532179E3BF79}.Release|x64.Build.0 = Release|x64
 		{22CA7888-6D80-4122-9414-532179E3BF79}.Release|x86.ActiveCfg = Release|Win32
 		{22CA7888-6D80-4122-9414-532179E3BF79}.Release|x86.Build.0 = Release|Win32
+		{E13378C2-EA74-487D-98E0-6EEDBB1CE85F}.Debug|x64.ActiveCfg = Debug|x64
+		{E13378C2-EA74-487D-98E0-6EEDBB1CE85F}.Debug|x64.Build.0 = Debug|x64
+		{E13378C2-EA74-487D-98E0-6EEDBB1CE85F}.Debug|x86.ActiveCfg = Debug|Win32
+		{E13378C2-EA74-487D-98E0-6EEDBB1CE85F}.Debug|x86.Build.0 = Debug|Win32
+		{E13378C2-EA74-487D-98E0-6EEDBB1CE85F}.Release|x64.ActiveCfg = Release|x64
+		{E13378C2-EA74-487D-98E0-6EEDBB1CE85F}.Release|x64.Build.0 = Release|x64
+		{E13378C2-EA74-487D-98E0-6EEDBB1CE85F}.Release|x86.ActiveCfg = Release|Win32
+		{E13378C2-EA74-487D-98E0-6EEDBB1CE85F}.Release|x86.Build.0 = Release|Win32
+		{CE6C65D7-F8C4-4776-AC6B-D2C53BCB1AFC}.Debug|x64.ActiveCfg = Debug|x64
+		{CE6C65D7-F8C4-4776-AC6B-D2C53BCB1AFC}.Debug|x64.Build.0 = Debug|x64
+		{CE6C65D7-F8C4-4776-AC6B-D2C53BCB1AFC}.Debug|x86.ActiveCfg = Debug|Win32
+		{CE6C65D7-F8C4-4776-AC6B-D2C53BCB1AFC}.Debug|x86.Build.0 = Debug|Win32
+		{CE6C65D7-F8C4-4776-AC6B-D2C53BCB1AFC}.Release|x64.ActiveCfg = Release|x64
+		{CE6C65D7-F8C4-4776-AC6B-D2C53BCB1AFC}.Release|x64.Build.0 = Release|x64
+		{CE6C65D7-F8C4-4776-AC6B-D2C53BCB1AFC}.Release|x86.ActiveCfg = Release|Win32
+		{CE6C65D7-F8C4-4776-AC6B-D2C53BCB1AFC}.Release|x86.Build.0 = Release|Win32
+		{7755A607-5808-4ED2-B0DE-4029A549C350}.Debug|x64.ActiveCfg = Debug|x64
+		{7755A607-5808-4ED2-B0DE-4029A549C350}.Debug|x64.Build.0 = Debug|x64
+		{7755A607-5808-4ED2-B0DE-4029A549C350}.Debug|x86.ActiveCfg = Debug|Win32
+		{7755A607-5808-4ED2-B0DE-4029A549C350}.Debug|x86.Build.0 = Debug|Win32
+		{7755A607-5808-4ED2-B0DE-4029A549C350}.Release|x64.ActiveCfg = Release|x64
+		{7755A607-5808-4ED2-B0DE-4029A549C350}.Release|x64.Build.0 = Release|x64
+		{7755A607-5808-4ED2-B0DE-4029A549C350}.Release|x86.ActiveCfg = Release|Win32
+		{7755A607-5808-4ED2-B0DE-4029A549C350}.Release|x86.Build.0 = Release|Win32
+		{78E76FF0-5DAB-4889-A783-668ACD65EBAF}.Debug|x64.ActiveCfg = Debug|x64
+		{78E76FF0-5DAB-4889-A783-668ACD65EBAF}.Debug|x64.Build.0 = Debug|x64
+		{78E76FF0-5DAB-4889-A783-668ACD65EBAF}.Debug|x86.ActiveCfg = Debug|Win32
+		{78E76FF0-5DAB-4889-A783-668ACD65EBAF}.Debug|x86.Build.0 = Debug|Win32
+		{78E76FF0-5DAB-4889-A783-668ACD65EBAF}.Release|x64.ActiveCfg = Release|x64
+		{78E76FF0-5DAB-4889-A783-668ACD65EBAF}.Release|x64.Build.0 = Release|x64
+		{78E76FF0-5DAB-4889-A783-668ACD65EBAF}.Release|x86.ActiveCfg = Release|Win32
+		{78E76FF0-5DAB-4889-A783-668ACD65EBAF}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F9F63EC6-C633-4D48-88FE-4A15B3BB9D37}
 	EndGlobalSection
 EndGlobal
