@@ -15,6 +15,9 @@
 
 #include "shader.h"
 #include "cube.h"
+
+#include "EGL/egl.h"
+#include "GLES2/gl2.h"
 #include "fakedriver.h"
 
 /* 

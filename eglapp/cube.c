@@ -13,9 +13,9 @@
 #include "window.h"
 #include "matrix.h"
 
-#include "fakedriver.h"
-#include "GLES2/gl2.h"
 #include "EGL/egl.h"
+#include "GLES2/gl2.h"
+#include "fakedriver.h"
 
 HWND hWindow;
 HDC  hDisplay;

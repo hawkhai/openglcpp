@@ -18,6 +18,8 @@
 #define WIN32_LEAN_AND_MEAN 1
 #include <windows.h>
 
+#include "EGL/egl.h"
+#include "GLES2/gl2.h"
 #include "fakedriver.h"
 
 typedef struct {
