@@ -28,6 +28,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fakedriverAdapterMali", "..
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fakedriverAdapterPowerVR", "..\..\irrlicht\irrlicht-ogles\source\Irrlicht\fakedriver\fakedriverAdapter\fakedriverAdapterPowerVR.vcxproj", "{78E76FF0-5DAB-4889-A783-668ACD65EBAF}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "fakedriverAdapterOpenGL", "..\..\irrlicht\irrlicht-ogles\source\Irrlicht\fakedriver\fakedriverAdapter\fakedriverAdapterOpenGL.vcxproj", "{78E76FF0-5DAB-4889-A783-668ACD65EBAE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -76,6 +78,14 @@ Global
 		{78E76FF0-5DAB-4889-A783-668ACD65EBAF}.Release|x64.Build.0 = Release|x64
 		{78E76FF0-5DAB-4889-A783-668ACD65EBAF}.Release|x86.ActiveCfg = Release|Win32
 		{78E76FF0-5DAB-4889-A783-668ACD65EBAF}.Release|x86.Build.0 = Release|Win32
+		{78E76FF0-5DAB-4889-A783-668ACD65EBAE}.Debug|x64.ActiveCfg = Debug|x64
+		{78E76FF0-5DAB-4889-A783-668ACD65EBAE}.Debug|x64.Build.0 = Debug|x64
+		{78E76FF0-5DAB-4889-A783-668ACD65EBAE}.Debug|x86.ActiveCfg = Debug|Win32
+		{78E76FF0-5DAB-4889-A783-668ACD65EBAE}.Debug|x86.Build.0 = Debug|Win32
+		{78E76FF0-5DAB-4889-A783-668ACD65EBAE}.Release|x64.ActiveCfg = Release|x64
+		{78E76FF0-5DAB-4889-A783-668ACD65EBAE}.Release|x64.Build.0 = Release|x64
+		{78E76FF0-5DAB-4889-A783-668ACD65EBAE}.Release|x86.ActiveCfg = Release|Win32
+		{78E76FF0-5DAB-4889-A783-668ACD65EBAE}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
