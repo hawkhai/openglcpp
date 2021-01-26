@@ -3,6 +3,7 @@
 
 #include "framework.h"
 #include "win32egl.h"
+#include "CELLWinApp.h"
 
 #define MAX_LOADSTRING 100
 
@@ -26,6 +27,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     UNREFERENCED_PARAMETER(lpCmdLine);
 
     // TODO: 在此处放置代码。
+    CELLWinApp app(hInstance);
+    app.main(800, 600);
+    return 0;
 
     // 初始化全局字符串
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
