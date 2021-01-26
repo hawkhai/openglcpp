@@ -23,15 +23,12 @@ Other vendors (NVIDIA, INTEL) expose OpenGL ES on via WGL extensions.
 using namespace std;
 
 const GLchar* vertexShaderSource[] = {
-    "precision mediump float;\n"
     "uniform mat4 uMVPMatrix;\n"
-    "uniform mat4 uMVMatrix;\n"
-    "attribute vec3 aPosition;\n"
+    "attribute vec4 aPosition;\n"
     "attribute vec2 aTexCoord;\n"
     "varying vec2 vTexCoord;\n"
     "void main() {\n"
-        "vec4 tempPosition = vec4(aPosition, 1.0);"
-        "gl_Position = uMVPMatrix * tempPosition;\n"
+        "gl_Position = uMVPMatrix * aPosition;\n"
         "vTexCoord = aTexCoord;\n"
     "}\n"
 };
@@ -39,6 +36,7 @@ const GLchar* vertexShaderSource[] = {
 const GLchar* fragmentShaderSource[] = {
     "#extension GL_OES_EGL_image_external : require\n"
     "precision mediump float;\n"
+    "uniform sampler2D sTexture;\n"
     "varying vec2 vTexCoord;\n"
     "void main() {\n"
         "gl_FragColor = vec4(abs(vTexCoord.s), abs(vTexCoord.t), 1.0, 1.0);\n"
@@ -176,8 +174,8 @@ GLuint compileShaders(const GLchar** vertexShaderSource, const GLchar** fragment
     glLinkProgram(program);
 
     //Delete shaders objects
-    //glDeleteShader(vertexShader);
-    //glDeleteShader(fragmentShader);
+    glDeleteShader(vertexShader);
+    glDeleteShader(fragmentShader);
     return program;
 }
 
@@ -316,14 +314,13 @@ int _tmain(int argc, _TCHAR* argv[])
         if (eglRenderable & EGL_OPENVG_BIT) cout << "OPENVG" << "\n";
         if (eglRenderable & EGL_OPENGL_BIT) cout << "OPENGL" << "\n";
         cout << "\n";
-        break;
     }
 
     EGLint attr[] = {
         EGL_BLUE_SIZE, 8,
         EGL_GREEN_SIZE, 8,
         EGL_RED_SIZE, 8,
-        EGL_DEPTH_SIZE,24,
+        EGL_DEPTH_SIZE, 24,
         EGL_RENDERABLE_TYPE, EGL_WINDOW_BIT | EGL_OPENGL_ES2_BIT,
         EGL_SURFACE_TYPE, EGL_WINDOW_BIT | EGL_OPENGL_ES2_BIT,
         EGL_NONE
@@ -369,9 +366,9 @@ int _tmain(int argc, _TCHAR* argv[])
     if (true) {
         eglMakeCurrent(eglDisplay, EGL_NO_SURFACE, EGL_NO_SURFACE, EGL_NO_CONTEXT);
         if (eglContext != EGL_NO_CONTEXT) {
-            eglDestroyContext(eglDisplay, eglSurface);
+            eglDestroyContext(eglDisplay, eglContext);
         }
-        if (eglContext != EGL_NO_SURFACE) {
+        if (eglSurface != EGL_NO_SURFACE) {
             eglDestroySurface(eglDisplay, eglSurface);
         }
         eglTerminate(eglDisplay);
