@@ -143,6 +143,9 @@ const float aColours[] =
 };
 
 int main(int argc, char **argv) {
+
+    fda_loadfakedriver(FDA_ID_MALI);
+
     EGLDisplay	sEGLDisplay;
     EGLContext	sEGLContext;
     EGLSurface	sEGLSurface;

@@ -17,6 +17,9 @@ include_directories(
 
 set(MSVC_CFG_Debug_Win32 OFF CACHE INTERNAL "")
 include(app.vcxproj.cmake)
+add_definitions(-DUNICODE)
+add_definitions(-D_UNICODE)
+
 add_executable(
     appx
     app.vcxproj.cmake

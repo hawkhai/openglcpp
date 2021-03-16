@@ -2,8 +2,8 @@
 # https://github.com/juj/MathGeoLib/blob/master/CommonOptions.cmake
 # Add the global _DEBUG flag from WIN32 platform to all others, which is universally used in MGL to
 # perform debug-mode-specific compilation.
-set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -D_DEBUG")
-set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -D_DEBUG")
+set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -D_DEBUG -DDEBUG")
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -D_DEBUG -DDEBUG")
 
 
 # set(MSVC_CFG_Debug_Win32 OFF CACHE INTERNAL "")
