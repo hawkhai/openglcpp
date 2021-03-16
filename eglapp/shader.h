@@ -13,7 +13,7 @@
 
 #include "EGL/egl.h"
 #include "GLES2/gl2.h"
-#include "fakedriver.h"
+#include "fakedriverInterface.h"
 
 char* load_shader(char *sFilename);
 void process_shader(GLuint *pShader, char *sFilename, GLint iShaderType);

@@ -15,7 +15,7 @@
 
 #include "EGL/egl.h"
 #include "GLES2/gl2.h"
-#include "fakedriver.h"
+#include "fakedriverInterface.h"
 
 HWND hWindow;
 HDC  hDisplay;
@@ -187,10 +187,10 @@ int main(int argc, char **argv) {
 
     hDisplay = EGL_DEFAULT_DISPLAY;
 
-    sEGLDisplay = EGL_CHECK(eglzGetDisplay(hDisplay));
+    sEGLDisplay = EGL_CHECK(eglGetDisplay(hDisplay));
 
-    EGL_CHECK(eglzInitialize(sEGLDisplay, NULL, NULL));
-    EGL_CHECK(eglzChooseConfig(sEGLDisplay, aEGLAttributes, aEGLConfigs, 1, &cEGLConfigs));
+    EGL_CHECK(eglInitialize(sEGLDisplay, NULL, NULL));
+    EGL_CHECK(eglChooseConfig(sEGLDisplay, aEGLAttributes, aEGLConfigs, 1, &cEGLConfigs));
 
     if (cEGLConfigs == 0) {
         printf("No EGL configurations were returned.\n");
@@ -199,7 +199,7 @@ int main(int argc, char **argv) {
 
     hWindow = create_window(uiWidth, uiHeight);
 
-    sEGLSurface = EGL_CHECK(eglzCreateWindowSurface(sEGLDisplay, 
+    sEGLSurface = EGL_CHECK(eglCreateWindowSurface(sEGLDisplay, 
 		aEGLConfigs[0], (EGLNativeWindowType)hWindow, NULL));
 
     if (sEGLSurface == EGL_NO_SURFACE) {
@@ -207,7 +207,7 @@ int main(int argc, char **argv) {
         exit(-1);
     }
 
-    sEGLContext = EGL_CHECK(eglzCreateContext(sEGLDisplay, 
+    sEGLContext = EGL_CHECK(eglCreateContext(sEGLDisplay, 
 		aEGLConfigs[0], EGL_NO_CONTEXT, aEGLContextAttributes));
 
     if (sEGLContext == EGL_NO_CONTEXT) {
@@ -215,23 +215,23 @@ int main(int argc, char **argv) {
         exit(-1);
     }
 
-    EGL_CHECK(eglzMakeCurrent(sEGLDisplay, sEGLSurface, sEGLSurface, sEGLContext));
+    EGL_CHECK(eglMakeCurrent(sEGLDisplay, sEGLSurface, sEGLSurface, sEGLContext));
 
     /* Shader Initialisation */
-    process_shader(&uiVertShader, "shader\\shader.vert", GL_VERTEX_SHADER);
-    process_shader(&uiFragShader, "shader\\shader.frag", GL_FRAGMENT_SHADER);
+    process_shader(&uiVertShader, "..\\shader\\shader.vert", GL_VERTEX_SHADER);
+    process_shader(&uiFragShader, "..\\shader\\shader.frag", GL_FRAGMENT_SHADER);
 
     /* Create uiProgram (ready to attach shaders) */
-    uiProgram = GL_CHECK(glzCreateProgram());
+    uiProgram = GL_CHECK(glCreateProgram());
 
     /* Attach shaders and link uiProgram */
-    GL_CHECK(glzAttachShader(uiProgram, uiVertShader));
-    GL_CHECK(glzAttachShader(uiProgram, uiFragShader));
-    GL_CHECK(glzLinkProgram(uiProgram));
+    GL_CHECK(glAttachShader(uiProgram, uiVertShader));
+    GL_CHECK(glAttachShader(uiProgram, uiFragShader));
+    GL_CHECK(glLinkProgram(uiProgram));
 
     /* Get attribute locations of non-fixed attributes like colour and texture coordinates. */
-    iLocPosition = GL_CHECK(glzGetAttribLocation(uiProgram, "av4position"));
-    iLocColour = GL_CHECK(glzGetAttribLocation(uiProgram, "av3colour"));
+    iLocPosition = GL_CHECK(glGetAttribLocation(uiProgram, "av4position"));
+    iLocColour = GL_CHECK(glGetAttribLocation(uiProgram, "av3colour"));
 
 #ifdef DEBUG
     printf("iLocPosition = %i\n", iLocPosition);
@@ -239,24 +239,24 @@ int main(int argc, char **argv) {
 #endif
 
     /* Get uniform locations */
-    iLocMVP = GL_CHECK(glzGetUniformLocation(uiProgram, "mvp"));
+    iLocMVP = GL_CHECK(glGetUniformLocation(uiProgram, "mvp"));
 
 #ifdef DEBUG
     printf("iLocMVP      = %i\n", iLocMVP);
 #endif
 
-    GL_CHECK(glzUseProgram(uiProgram));
+    GL_CHECK(glUseProgram(uiProgram));
 
     /* Enable attributes for position, colour and texture coordinates etc. */
-    GL_CHECK(glzEnableVertexAttribArray(iLocPosition));
-    GL_CHECK(glzEnableVertexAttribArray(iLocColour));
+    GL_CHECK(glEnableVertexAttribArray(iLocPosition));
+    GL_CHECK(glEnableVertexAttribArray(iLocColour));
 
     /* Populate attributes for position, colour and texture coordinates etc. */
-    GL_CHECK(glzVertexAttribPointer(iLocPosition, 3, GL_FLOAT, GL_FALSE, 0, aVertices));
-    GL_CHECK(glzVertexAttribPointer(iLocColour, 3, GL_FLOAT, GL_FALSE, 0, aColours));
+    GL_CHECK(glVertexAttribPointer(iLocPosition, 3, GL_FLOAT, GL_FALSE, 0, aVertices));
+    GL_CHECK(glVertexAttribPointer(iLocColour, 3, GL_FLOAT, GL_FALSE, 0, aColours));
 
-    GL_CHECK(glzEnable(GL_CULL_FACE));
-    GL_CHECK(glzEnable(GL_DEPTH_TEST));
+    GL_CHECK(glEnable(GL_CULL_FACE));
+    GL_CHECK(glEnable(GL_DEPTH_TEST));
 
     /* Enter event loop */
     while (!bDone) {
@@ -276,7 +276,7 @@ int main(int argc, char **argv) {
         aModelView[14] -= 2.5;
         perspective_matrix(45.0, (double)uiWidth/(double)uiHeight, 0.01, 100.0, aPerspective);
         multiply_matrix(aPerspective, aModelView, aMVP);
-        GL_CHECK(glzUniformMatrix4fv(iLocMVP, 1, GL_FALSE, aMVP));
+        GL_CHECK(glUniformMatrix4fv(iLocMVP, 1, GL_FALSE, aMVP));
 
         iXangle += 3;
         iYangle += 2;
@@ -289,10 +289,10 @@ int main(int argc, char **argv) {
         if(iZangle >= 360) iZangle -= 360;
         if(iZangle < 0) iZangle += 360;
 
-        GL_CHECK(glzClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT));
-        GL_CHECK(glzDrawArrays(GL_TRIANGLES, 0, 36));
+        GL_CHECK(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT));
+        GL_CHECK(glDrawArrays(GL_TRIANGLES, 0, 36));
 
-        if (!eglzSwapBuffers(sEGLDisplay, sEGLSurface)) {
+        if (!eglSwapBuffers(sEGLDisplay, sEGLSurface)) {
             printf("Failed to swap buffers.\n");
         }
 
@@ -300,16 +300,16 @@ int main(int argc, char **argv) {
     }
 
     /* Cleanup shaders */
-    GL_CHECK(glzUseProgram(0));
-    GL_CHECK(glzDeleteShader(uiVertShader));
-    GL_CHECK(glzDeleteShader(uiFragShader));
-    GL_CHECK(glzDeleteProgram(uiProgram));
+    GL_CHECK(glUseProgram(0));
+    GL_CHECK(glDeleteShader(uiVertShader));
+    GL_CHECK(glDeleteShader(uiFragShader));
+    GL_CHECK(glDeleteProgram(uiProgram));
 
     /* EGL clean up */
-    EGL_CHECK(eglzMakeCurrent(sEGLDisplay, EGL_NO_SURFACE, EGL_NO_SURFACE, EGL_NO_CONTEXT));
-    EGL_CHECK(eglzDestroySurface(sEGLDisplay, sEGLSurface));
-    EGL_CHECK(eglzDestroyContext(sEGLDisplay, sEGLContext));
-    EGL_CHECK(eglzTerminate(sEGLDisplay));
+    EGL_CHECK(eglMakeCurrent(sEGLDisplay, EGL_NO_SURFACE, EGL_NO_SURFACE, EGL_NO_CONTEXT));
+    EGL_CHECK(eglDestroySurface(sEGLDisplay, sEGLSurface));
+    EGL_CHECK(eglDestroyContext(sEGLDisplay, sEGLContext));
+    EGL_CHECK(eglTerminate(sEGLDisplay));
 
     return 0;
 }

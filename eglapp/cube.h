@@ -20,7 +20,7 @@
 
 #include "EGL/egl.h"
 #include "GLES2/gl2.h"
-#include "fakedriver.h"
+#include "fakedriverInterface.h"
 
 typedef struct {
 	float x, y, z;
@@ -29,9 +29,9 @@ typedef struct {
 #define GL_CHECK(x) \
         x; \
         { \
-          GLenum glError = glzGetError(); \
+          GLenum glError = glGetError(); \
           if(glError != GL_NO_ERROR) { \
-            fprintf(stderr, "glzGetError() = %i (0x%.8x) at line %i\n", glError, glError, __LINE__); \
+            fprintf(stderr, "glGetError() = %i (0x%.8x) at line %i\n", glError, glError, __LINE__); \
             exit(1); \
           } \
         }
@@ -39,9 +39,9 @@ typedef struct {
 #define EGL_CHECK(x) \
     x; \
     { \
-        EGLint eglError = eglzGetError(); \
+        EGLint eglError = eglGetError(); \
         if(eglError != EGL_SUCCESS) { \
-            fprintf(stderr, "eglzGetError() = %i (0x%.8x) at line %i\n", eglError, eglError, __LINE__); \
+            fprintf(stderr, "eglGetError() = %i (0x%.8x) at line %i\n", eglError, eglError, __LINE__); \
             exit(1); \
         } \
     }

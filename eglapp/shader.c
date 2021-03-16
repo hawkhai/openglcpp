@@ -18,7 +18,7 @@
 
 #include "EGL/egl.h"
 #include "GLES2/gl2.h"
-#include "fakedriver.h"
+#include "fakedriverInterface.h"
 
 /* 
  * Loads the shader source into memory.
@@ -60,7 +60,7 @@ void process_shader(GLuint *pShader, char *sFilename, GLint iShaderType) {
 	const char *aStrings[1] = { NULL };
 
 	/* Create shader and load into GL. */
-	*pShader = GL_CHECK(glzCreateShader(iShaderType));
+	*pShader = GL_CHECK(glCreateShader(iShaderType));
 	
 #define max_path 4096
     char resolved_path[max_path] = { 0 };
@@ -68,15 +68,15 @@ void process_shader(GLuint *pShader, char *sFilename, GLint iShaderType) {
 
 	aStrings[0] = load_shader(resolved_path);
 	
-	GL_CHECK(glzShaderSource(*pShader, 1, aStrings, NULL));
+	GL_CHECK(glShaderSource(*pShader, 1, aStrings, NULL));
 
 	/* Clean up shader source. */
 	free((void *)aStrings[0]);
 	aStrings[0] = NULL;
 
 	/* Try compiling the shader. */
-	GL_CHECK(glzCompileShader(*pShader));
-	GL_CHECK(glzGetShaderiv(*pShader, GL_COMPILE_STATUS, &iStatus));
+	GL_CHECK(glCompileShader(*pShader));
+	GL_CHECK(glGetShaderiv(*pShader, GL_COMPILE_STATUS, &iStatus));
 
 	// Dump debug info (source and log) if compilation failed.
 	if(iStatus != GL_TRUE) {
