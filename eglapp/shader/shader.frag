@@ -10,8 +10,12 @@
 
 precision lowp float;
 
+varying vec2 vv2TexCoord;
 varying vec3 vv3colour;
 
+uniform sampler2D ourTexture;
+
 void main() {
-	gl_FragColor = vec4(vv3colour, 1.0);
+	gl_FragColor = mix(vec4(vv3colour, 1.0), 
+            texture2D(ourTexture, vv2TexCoord), 0.5);
 }

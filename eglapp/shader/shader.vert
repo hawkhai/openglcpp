@@ -10,12 +10,15 @@
 
 attribute vec4 av4position;
 attribute vec3 av3colour;
+attribute vec2 av2texcoord;
 
 uniform mat4 mvp;
 
+varying vec2 vv2TexCoord;
 varying vec3 vv3colour;
 
 void main() {
+    vv2TexCoord = av2texcoord;
 	vv3colour = av3colour;
 	gl_Position = mvp * av4position;
 }

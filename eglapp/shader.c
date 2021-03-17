@@ -48,6 +48,29 @@ char* load_shader(char *sFilename) {
     return pResult;
 }
 
+void checkCompileErrors(GLuint shader, int type)
+{
+    GLint success = 0;
+    GLchar infoLog[1024] = { 0 };
+    if (type == GL_VERTEX_SHADER || type == GL_FRAGMENT_SHADER)
+    {
+        glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
+        if (!success)
+        {
+            glGetShaderInfoLog(shader, 1024, NULL, infoLog);
+        }
+    }
+    else
+    {
+        glGetProgramiv(shader, GL_LINK_STATUS, &success);
+        if (!success)
+        {
+            glGetProgramInfoLog(shader, 1024, NULL, infoLog);
+        }
+    }
+    success = 0;
+}
+
 /* 
  * Create shader, load in source, compile, dump debug as necessary.
  *
@@ -77,6 +100,8 @@ void process_shader(GLuint *pShader, char *sFilename, GLint iShaderType) {
 	/* Try compiling the shader. */
 	GL_CHECK(glCompileShader(*pShader));
 	GL_CHECK(glGetShaderiv(*pShader, GL_COMPILE_STATUS, &iStatus));
+
+    checkCompileErrors(*pShader, iShaderType);
 
 	// Dump debug info (source and log) if compilation failed.
 	if(iStatus != GL_TRUE) {

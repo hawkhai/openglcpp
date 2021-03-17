@@ -17,6 +17,8 @@
 #include "GLES2/gl2.h"
 #include "fakedriverInterface.h"
 
+#include <SOIL.h>
+
 HWND hWindow;
 HDC  hDisplay;
 
@@ -142,9 +144,78 @@ const float aColours[] =
     1.0, 0.0, 1.0, /* magenta */
 };
 
+const float aTexCoords[] =
+{
+    /* Front face */
+    0, 1,
+    1, 0,
+    0, 0,
+    0, 1,
+    1, 1,
+    1, 0,
+
+    /* Left face */
+    0, 1,
+    1, 0,
+    0, 0,
+    0, 1,
+    1, 1,
+    1, 0,
+
+    /* Top face */
+    0, 1,
+    1, 0,
+    0, 0,
+    0, 1,
+    1, 1,
+    1, 0,
+
+    /* Right face */
+    0, 1,
+    1, 0,
+    0, 0,
+    0, 1,
+    1, 1,
+    1, 0,
+
+    /* Back face */
+    0, 1,
+    1, 0,
+    0, 0,
+    0, 1,
+    1, 1,
+    1, 0,
+
+    /* Bottom face */
+    0, 1,
+    1, 0,
+    0, 0,
+    0, 1,
+    1, 1,
+    1, 0,
+};
+
+GLuint g_texture = 0;
+void loadTexture() {
+    glGenTextures(1, &g_texture);
+    glBindTexture(GL_TEXTURE_2D, g_texture);
+
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+    int width, height;
+    unsigned char* image = SOIL_load_image("..\\awesomeface.png", &width, &height, 0, SOIL_LOAD_RGB);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
+    glGenerateMipmap(GL_TEXTURE_2D);
+    SOIL_free_image_data(image);
+    glBindTexture(GL_TEXTURE_2D, 0);
+}
+
 int main(int argc, char **argv) {
 
-    fda_loadfakedriver(FDA_ID_MALI);
+    fda_loadfakedriver(FDA_ID_ADRENO);
 
     EGLDisplay	sEGLDisplay;
     EGLContext	sEGLContext;
@@ -173,6 +244,7 @@ int main(int argc, char **argv) {
 
     GLint iLocPosition = 0;
     GLint iLocColour, iLocMVP;
+    GLint iLocTexCoord;
     GLuint uiProgram, uiFragShader, uiVertShader;
     int bDone = 0;
 
@@ -235,10 +307,12 @@ int main(int argc, char **argv) {
     /* Get attribute locations of non-fixed attributes like colour and texture coordinates. */
     iLocPosition = GL_CHECK(glGetAttribLocation(uiProgram, "av4position"));
     iLocColour = GL_CHECK(glGetAttribLocation(uiProgram, "av3colour"));
+    iLocTexCoord = GL_CHECK(glGetAttribLocation(uiProgram, "av2texcoord"));
 
 #ifdef DEBUG
     printf("iLocPosition = %i\n", iLocPosition);
     printf("iLocColour   = %i\n", iLocColour);
+    printf("iLocTexCoord = %i\n", iLocTexCoord);
 #endif
 
     /* Get uniform locations */
@@ -250,13 +324,23 @@ int main(int argc, char **argv) {
 
     GL_CHECK(glUseProgram(uiProgram));
 
+    loadTexture();
+
+    // https://learnopengl-cn.readthedocs.io/zh/latest/01%20Getting%20started/06%20Textures/
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, g_texture);
+    GLint uid = glGetUniformLocation(uiProgram, "ourTexture");
+    glUniform1i(uid, 0);
+
     /* Enable attributes for position, colour and texture coordinates etc. */
     GL_CHECK(glEnableVertexAttribArray(iLocPosition));
     GL_CHECK(glEnableVertexAttribArray(iLocColour));
+    GL_CHECK(glEnableVertexAttribArray(iLocTexCoord));
 
     /* Populate attributes for position, colour and texture coordinates etc. */
     GL_CHECK(glVertexAttribPointer(iLocPosition, 3, GL_FLOAT, GL_FALSE, 0, aVertices));
     GL_CHECK(glVertexAttribPointer(iLocColour, 3, GL_FLOAT, GL_FALSE, 0, aColours));
+    GL_CHECK(glVertexAttribPointer(iLocTexCoord, 2, GL_FLOAT, GL_FALSE, 0, aTexCoords));    
 
     GL_CHECK(glEnable(GL_CULL_FACE));
     GL_CHECK(glEnable(GL_DEPTH_TEST));

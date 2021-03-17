@@ -13,6 +13,10 @@ include_directories(
     ${FAKEDRIVER_DIR}/fakelib/include
     ${FAKEDRIVER_DIR}/include/khronos
     ${FAKEDRIVER_DIR}/include
+    ${OGL3RD_DIR}/SOIL/include/SOIL
+)
+link_directories(
+    ${OGL3RD_DIR}/SOIL/lib/vs2017/Release
 )
 
 set(MSVC_CFG_Debug_Win32 OFF CACHE INTERNAL "")
@@ -24,9 +28,12 @@ add_executable(
     appx
     app.vcxproj.cmake
     ${MSVC_APP_VCXPROJ_SRCS}
+    shader/shader.frag
+    shader/shader.vert
 )
 target_link_libraries(
     appx
+    SOIL
     fakedriver
 )
 set_target_properties(appx PROPERTIES RUNTIME_OUTPUT_DIRECTORY_DEBUG "${CMAKE_CURRENT_SOURCE_DIR}/product")
