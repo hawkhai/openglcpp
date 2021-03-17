@@ -214,8 +214,12 @@ void loadTexture() {
 }
 
 int main(int argc, char **argv) {
-
-    fda_loadfakedriver(FDA_ID_ADRENO);
+//#define FDA_ID_MALI            1
+//#define FDA_ID_ADRENO          2 // 最后一个会崩溃 EGL_CHECK(eglTerminate(sEGLDisplay));
+//#define FDA_ID_POWERVR         3
+//#define FDA_ID_OPENGL          4
+//#define FDA_ID_ANGLE           5
+    fda_loadfakedriver(FDA_ID_ANGLE);
 
     EGLDisplay	sEGLDisplay;
     EGLContext	sEGLContext;
@@ -396,7 +400,7 @@ int main(int argc, char **argv) {
     EGL_CHECK(eglMakeCurrent(sEGLDisplay, EGL_NO_SURFACE, EGL_NO_SURFACE, EGL_NO_CONTEXT));
     EGL_CHECK(eglDestroySurface(sEGLDisplay, sEGLSurface));
     EGL_CHECK(eglDestroyContext(sEGLDisplay, sEGLContext));
-    EGL_CHECK(eglTerminate(sEGLDisplay));
+    (eglTerminate(sEGLDisplay));
 
     return 0;
 }
