@@ -14,9 +14,13 @@ include_directories(
     ${FAKEDRIVER_DIR}/include/khronos
     ${FAKEDRIVER_DIR}/include
     ${OGL3RD_DIR}/SOIL/include/SOIL
+    ${OGL3RD_DIR}/glfw-3.3.2.bin.WIN32/glfw-3.3.2.bin.WIN32/include
+    ${OGL3RD_DIR}/glad/include
 )
 link_directories(
     ${OGL3RD_DIR}/SOIL/lib/vs2017/Release
+    ${OGL3RD_DIR}/glfw-3.3.2.bin.WIN32/glfw-3.3.2.bin.WIN32/lib-vc2017
+    ${OGL3RD_DIR}/glad/lib/vs2017_win32/Release
 )
 
 set(MSVC_CFG_Debug_Win32 OFF CACHE INTERNAL "")
@@ -30,12 +34,13 @@ add_executable(
     ${MSVC_APP_VCXPROJ_SRCS}
     shader/shader.frag
     shader/shader.vert
-    test_gles2.0.c
+    #test_gles2.0.c
+    test_opengl.c
 )
 target_link_libraries(
     appx
     SOIL
-    fakedriver
+    fakedriver glfw3 glad
 )
 set_target_properties(appx PROPERTIES RUNTIME_OUTPUT_DIRECTORY_DEBUG "${CMAKE_CURRENT_SOURCE_DIR}/product")
 set_target_properties(appx PROPERTIES VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/product")
