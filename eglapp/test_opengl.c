@@ -78,7 +78,7 @@ unsigned int uploadData() {
         // GLuint index, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const void* pointer
         // size 每组数据用到的个数
         // stride 一组数据的大小 sizeof(Vertex)
-        // pointer 每组数据内部便宜
+        // pointer 每组数据内部偏移
         glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
         glEnableVertexAttribArray(0);
 
