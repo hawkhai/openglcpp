@@ -85,7 +85,7 @@ void onDrawFrame() {
     glDisableVertexAttribArray(mPositionId);
 }
 
-int main(int argc, char **argv) {
+int main2(int argc, char **argv) {
 
     fda_loadfakedriver(FDA_ID_ANGLE);
 
@@ -110,7 +110,7 @@ int main(int argc, char **argv) {
 
     HWND hWindow = create_window(width, height);
     EGLSurface sEGLSurface = eglCreateWindowSurface(sEGLDisplay,
-        aEGLConfigs[0], (EGLNativeWindowType) hWindow, NULL);
+        aEGLConfigs[0], (EGLNativeWindowType)hWindow, NULL);
 
     EGLint aEGLContextAttributes[] = {
         EGL_CONTEXT_CLIENT_VERSION, 2,
@@ -130,7 +130,8 @@ int main(int argc, char **argv) {
         if (PeekMessage(&sMessage, NULL, 0, 0, PM_REMOVE)) {
             if (sMessage.message == WM_QUIT) {
                 break;
-            } else {
+            }
+            else {
                 TranslateMessage(&sMessage);
                 DispatchMessage(&sMessage);
             }

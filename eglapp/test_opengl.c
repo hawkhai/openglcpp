@@ -57,10 +57,10 @@ unsigned int createProgram() {
 unsigned int uploadData() {
 
     float vertices[] = {
-         0.5f,  0.5f, 0.0f,  // top right
-         0.5f, -0.5f, 0.0f,  // bottom right
-        -0.5f, -0.5f, 0.0f,  // bottom left
-        -0.5f,  0.5f, 0.0f   // top left 
+         0.5f,  0.5f, 0.0f, 0.1f, // top right
+         0.5f, -0.5f, 0.0f, 0.1f, // bottom right
+        -0.5f, -0.5f, 0.0f, 0.1f, // bottom left
+        -0.5f,  0.5f, 0.0f, 0.1f, // top left 
     };
     unsigned int indices[] = {
         0, 1, 3,  // first Triangle
@@ -76,10 +76,10 @@ unsigned int uploadData() {
         glBindBuffer(GL_ARRAY_BUFFER, VBO);
         glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
         // GLuint index, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const void* pointer
-        // size 一共多少组数据
+        // size 每组数据用到的个数
         // stride 一组数据的大小 sizeof(Vertex)
         // pointer 每组数据内部便宜
-        glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
         glEnableVertexAttribArray(0);
 
         glBindBuffer(GL_ARRAY_BUFFER, 0);
