@@ -30,6 +30,7 @@ add_executable(
     ${MSVC_APP_VCXPROJ_SRCS}
     shader/shader.frag
     shader/shader.vert
+    test_gles2.0.c
 )
 target_link_libraries(
     appx
