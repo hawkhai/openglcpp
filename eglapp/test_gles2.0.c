@@ -81,8 +81,24 @@ void onDrawFrame() {
     // https://arm-software.github.io/opengl-es-sdk-for-android/simple_triangle.html
     // https://community.arm.com/developer/tools-software/graphics/b/blog/posts/stride-argument-in-opengl-es-2-0
     // GLenum mode, GLint first, GLsizei count
-    glDrawArrays(GL_TRIANGLES, 0, 3);
+    glDrawArrays(GL_TRIANGLES, 0, 4);
     glDisableVertexAttribArray(mPositionId);
+
+    const GLfloat triangleVertices[] = {
+        -1.0f / 2,  1.0f / 2, // 左上
+        -1.0f / 2, -1.0f / 2, // 左下
+         1.0f / 2, -1.0f / 2, // 右下
+         1.0f / 2,  1.0f / 2, // 右上
+        -1.0f / 2,  1.0f / 2, // 左上
+        -1.0f / 2, -1.0f / 2, // 左下
+    };
+    glVertexAttribPointer(mPositionId, 2, GL_FLOAT, GL_FALSE, 0, triangleVertices);
+    glEnableVertexAttribArray(mPositionId);
+    // 1. GL_TRIANGLES：每三个顶之间绘制三角形，之间不连接。
+    // 2. GL_TRIANGLE_FAN：以 V0V1V2, V0V2V3, V0V3V4，……的形式绘制三角形。
+    // 3. GL_TRIANGLE_STRIP：顺序在每三个顶点之间均绘制三角形。这个方法可以保证从相同的方向上所有三角形均被绘制。
+    //    以 V0V1V2, V1V2V3, V2V3V4……的形式绘制三角形
+    glDrawArrays(GL_TRIANGLES, 0, 6);
 }
 
 int main(int argc, char **argv) {
