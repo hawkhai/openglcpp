@@ -36,6 +36,7 @@ add_executable(
     shader/shader.vert
     test_gles2.0.c
     test_opengl.c
+    test_main.c
 )
 target_link_libraries(
     appx

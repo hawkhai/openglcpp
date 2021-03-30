@@ -85,7 +85,7 @@ void onDrawFrame() {
     glDisableVertexAttribArray(mPositionId);
 }
 
-int main2(int argc, char **argv) {
+int main_gles20(int argc, char **argv) {
 
     fda_loadfakedriver(FDA_ID_ANGLE);
 

@@ -213,7 +213,7 @@ void loadTexture() {
     glBindTexture(GL_TEXTURE_2D, 0);
 }
 
-int maincube(int argc, char **argv) {
+int main_cube(int argc, char **argv) {
 //#define FDA_ID_MALI            1
 //#define FDA_ID_ADRENO          2 // 最后一个会崩溃 EGL_CHECK(eglTerminate(sEGLDisplay));
 //#define FDA_ID_POWERVR         3
@@ -259,8 +259,8 @@ int maincube(int argc, char **argv) {
 
     float aLightPos[] = { 0.0f, 0.0f, -1.0f }; // Light is nearest camera.
 
-    unsigned char *myPixels = calloc(1, 128*128*4); // Holds texture data.
-    unsigned char *myPixels2 = calloc(1, 128*128*4); // Holds texture data.
+    //unsigned char *myPixels = calloc(1, 128*128*4); // Holds texture data.
+    //unsigned char *myPixels2 = calloc(1, 128*128*4); // Holds texture data.
 
     float aRotate[16], aModelView[16], aPerspective[16], aMVP[16];
 
