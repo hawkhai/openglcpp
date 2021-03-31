@@ -187,3 +187,6 @@ FakesAssemblies/
 .vs
 *.filters
 logger.txt
+
+*.filters.json
+*.vcxproj.json
